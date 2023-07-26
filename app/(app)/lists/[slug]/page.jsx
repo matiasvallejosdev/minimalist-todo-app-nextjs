@@ -7,7 +7,7 @@ import { getTasks } from "@/src/services/Tasks";
 import ListActions from "@/src/components/Lists/ListActions";
 import ListTitle from "@/src/components/Lists/ListTitle";
 
-export default async function ListPage({ params, props }) {
+export default async function ListPage({ params }) {
     const { slug } = params
     const data = { slug: slug }
     const accessToken = await getAccessTokenServer();

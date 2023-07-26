@@ -3,7 +3,7 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import {makeUrl, isJwtExpired, refreshToken} from "../../../../src/utils/JwtUtilities";
 
-export const authOptions = {
+const authOptions = {
     session: {
         jwt: true,
         maxAge: 24 * 60 * 60, // 24 hours
