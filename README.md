@@ -1,12 +1,12 @@
 # Minimalist Todo App Next.js
 
-![Minimalist Todo App Next.js Banner](https://example.com/path/to/banner-image.png)
+<!-- ![Minimalist Todo App Next.js Banner](https://example.com/path/to/banner-image.png) -->
 
 ## Overview
 
 Minimalist Todo App is a sleek and user-friendly task management application developed using Next.js 13.4. This project serves as the frontend for managing tasks and seamlessly integrates with the Todo-Rest-API backend, which is developed using Python, Django REST Framework, and MySQL. The application utilizes NextAuth to provide social authentication via Google and implements server-side rendering for enhanced performance. The ultimate goal of this project is to imitate the functionality of "https://www.getminimalist.com/" while providing seamless integration with the backend application developed in Django.
 
-![Application Demo](https://example.com/path/to/demo-gif.gif)
+<!-- ![Application Demo](https://example.com/path/to/demo-gif.gif) -->
 
 ## Key Features
 
