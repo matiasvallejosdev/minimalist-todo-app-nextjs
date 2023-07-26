@@ -9,7 +9,8 @@ export default function ListTitle({ list }) {
 
     const handleClick = () => {
         if (list.name == 'inbox') return;
-        setIsOpen(true);
+        // TODO: Disabled until backend will fix "PATH" list endpoint
+        // setIsOpen(true);
     }
 
     const handleBlur = async () => {
