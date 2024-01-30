@@ -2,15 +2,16 @@
 import { useState } from "react";
 import { getAccessTokenClient } from "@/src/services/AuthClient";
 import { updateList } from "@/src/services/Lists";
+import { useRouter } from "next/navigation";
 
 export default function ListTitle({ list }) {
     const [isOpen, setIsOpen] = useState(false);
     const [listName, setListName] = useState(list.name);
+    const router = useRouter();
 
     const handleClick = () => {
         if (list.name == 'inbox') return;
-        // TODO: Disabled until backend will fix "PATH" list endpoint
-        // setIsOpen(true);
+        setIsOpen(true);
     }
 
     const handleBlur = async () => {
@@ -18,7 +19,7 @@ export default function ListTitle({ list }) {
         const accessToken = await getAccessTokenClient();
         updateList(accessToken, list.list_uuid, {
             name: listName
-        }).then(() => {
+        }).then((res) => {
             list.name = listName;
             router.refresh();
         }).catch(err => {
@@ -40,7 +41,7 @@ export default function ListTitle({ list }) {
                 />
             </> : <h4 onClick={handleClick} className="text-4xl pb-3 font-semibold">
                 {
-                    list.name == 'inbox' ? 'Inbox' : list.name
+                    list.name == 'inbox' ? 'Inbox' : listName
                 }
             </h4>
         }
