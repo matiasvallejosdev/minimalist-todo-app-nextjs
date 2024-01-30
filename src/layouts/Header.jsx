@@ -8,7 +8,7 @@ export default function Header() {
         <header className="w-full py-10 px-2 flex justify-between items-center bg-inherit">
             <div className="text-2xl font-bold dark:text-white">
                 <Link href="#" alt="home">
-                    minimalistic
+                    minimalist
                 </Link>
             </div>
             <div className="flex items-center justify-center flex-row gap-3">

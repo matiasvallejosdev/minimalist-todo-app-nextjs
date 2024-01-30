@@ -11,7 +11,7 @@ export default function LoginPage({searchParams}) {
                 <div className="flex flex-col gap-3 pb-3 text-center">
                     <div className="text-2xl font-bold dark:text-white">
                         <Link href="#" alt="home">
-                            minimalistic
+                            minimalist
                         </Link>
                     </div>
                     <p className="text p-0 text-sm">
