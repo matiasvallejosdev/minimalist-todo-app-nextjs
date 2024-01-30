@@ -1,3 +1,9 @@
+# Nextjs
+node_modules/
+.next/
+.swc/
+.*.env
+
 # Logs
 logs
 *.log

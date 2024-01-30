@@ -34,7 +34,7 @@ const authOptions = {
                 if (account.provider === "google") {
                     // extract these two tokens
                     const {access_token: accessToken, id_token: idToken} = account;
-
+                    
                     // make a POST request to the DRF backend
                     try {
                         // tip: use a separate .ts file or json file to store such URL endpoints
@@ -46,19 +46,21 @@ const authOptions = {
                             "login",
                             account.provider,
                         )
+                        
+                        console.log(url)
                         const
-                            response = await fetch(url, {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                    },
-                                    body: JSON.stringify({
-                                        access_token: account.access_token, // note the differences in key and value variable names
-                                        id_token: account.id_token,
-                                    }),
-                                }
-                            );
-
+                        response = await fetch(url, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                access_token: account.access_token, // note the differences in key and value variable names
+                                id_token: account.id_token,
+                            }),
+                        }
+                        );
+                        
                         const data = await response.json();
 
                         // extract the returned token from the DRF backend and add it to the `user` object
