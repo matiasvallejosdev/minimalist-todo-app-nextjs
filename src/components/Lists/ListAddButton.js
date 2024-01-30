@@ -50,6 +50,7 @@ export default function ListAddButton() {
             shadow-lg
             py-6 px-8 centered-div top-1/4 z-10 w-1/4
             bg-before
+            dark:bg-slate-800
 ">
             <h4 className="text-left w-full text-lg font-semibold mb-2">Create List</h4>
             <form id="create-list" name="create-list" onSubmit={(e) => handleSumbit(e)} className="w-full">
