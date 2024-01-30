@@ -3,8 +3,9 @@ import { signIn } from 'next-auth/react'
 import { IconBrandGoogle } from '@tabler/icons-react';
 
 export default function SignInButton(){
+
     const handleLogin = () => {
-        signIn('google', {callbackUrl: 'http://localhost:3000/lists/inbox'}).then(() => console.log("logged in"));
+        signIn('google', {callbackUrl: '/lists/inbox'}).then(() => console.log("logged in"));
     }
 
     return(
