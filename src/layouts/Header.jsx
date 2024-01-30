@@ -13,7 +13,7 @@ export default function Header() {
             </div>
             <div className="flex items-center justify-center flex-row gap-3">
                 <span className="text-md font-bold dark:text-white">
-                    Made with by <Link href=" https://www.linkedin.com/in/matiasvallejos/" target="_blank"
+                    Made with ♥ by <Link href=" https://www.linkedin.com/in/matiasvallejos/" target="_blank"
                                        className="text-bold text-primary-600">Matias Vallejos</Link>
                 </span>
                 <ToggleDarkMode/>
