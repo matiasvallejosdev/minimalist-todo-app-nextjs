@@ -1,7 +1,6 @@
 import User from "../../src/components/User";
 import ToggleDarkMode from "../../src/components/ToggleDarkMode";
-import SignOutButton from "../components/SignOutButton";
-import TasksList from "@/src/components/Lists/Lists";
+import TasksList from "@/src/components/Lists";
 import ListAddButton from "../../src/components/Lists/ListAddButton";
 
 export default function Sidebar(){
