@@ -5,7 +5,7 @@ import {signOut} from "next-auth/react";
 
 export default function SignOutButton() {
     const handleLogout = () => {
-        deleteCookie("token");
+        deleteCookie(process.env.JWT_NAME);
         signOut({callbackUrl: "/login"}).then(() => console.log("logged out"));
     }
 

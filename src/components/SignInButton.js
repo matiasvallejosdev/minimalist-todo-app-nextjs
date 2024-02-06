@@ -1,10 +1,12 @@
 'use client'
 import { signIn } from 'next-auth/react'
+import { deleteCookie } from 'cookies-next';
 import { IconBrandGoogle } from '@tabler/icons-react';
 
 export default function SignInButton(){
 
     const handleLogin = () => {
+        deleteCookie(process.env.JWT_NAME);
         signIn('google', {callbackUrl: '/lists/inbox'});
     }
 
