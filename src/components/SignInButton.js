@@ -5,7 +5,7 @@ import { IconBrandGoogle } from '@tabler/icons-react';
 export default function SignInButton(){
 
     const handleLogin = () => {
-        signIn('google', {callbackUrl: '/lists/inbox'}).then(() => console.log("logged in"));
+        signIn('google', {callbackUrl: '/lists/inbox'});
     }
 
     return(
