@@ -1,7 +1,6 @@
 'use client'
 import {useState} from 'react';
 import {updateTask} from "@/src/services/Tasks";
-import {getCookie} from "cookies-next";
 import {useRouter} from "next/navigation";
 import { getAccessTokenClient } from '@/src/services/AuthClient';
 
@@ -39,7 +38,7 @@ export default function TaskRow({task}) {
                                 ${isOpen ? 'rounded-none' : ''}
                                 `}
                 />
-            </> : <div onClick={handleClick}>
+            </> : <div className="cursor-text" onClick={handleClick}>
                 {taskTitle}
             </div>
         }

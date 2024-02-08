@@ -1,4 +1,4 @@
-import Tasks from "@/src/components/Tasks/Tasks";
+import Board from "@/src/components/Board";
 import { countTasks } from "@/src/services/Tasks";
 import TasksDropdown from "@/src/components/Tasks/TasksDropdown";
 import { getList } from "@/src/services/Lists";
@@ -11,24 +11,36 @@ export default async function ListPage({ params }) {
     const { slug } = params
     const data = { slug: slug }
     const accessToken = await getAccessTokenServer();
+    let tasksCounted, taskList, tasks = {}
 
-    const [tasksCounted, taskList, tasks] = await Promise.all([
-        countTasks(accessToken, data),
-        getList(accessToken, data),
-        getTasks(accessToken, data)
-    ]);
+    if(slug == "upcoming"){
+        [tasksCounted, tasks] = await Promise.all([
+            countTasks(accessToken, data),
+            getTasks(accessToken, data)
+        ]);
+        taskList = {
+            id: 0,
+            name: "Upcoming"
+        }
+    } else{
+        [tasksCounted, taskList, tasks] = await Promise.all([
+            countTasks(accessToken, data),
+            getList(accessToken, data),
+            getTasks(accessToken, data)
+        ]);
+    }
 
     return <>
         <div className="py-2 flex justify-between items-center">
             <ListTitle list={taskList}/>
             {
-                slug != 'inbox' && <ListActions list={taskList} />
+                slug != 'inbox' & slug !='upcoming' ? <ListActions list={taskList} /> : <></>
             }
         </div>
         <div className="flex flex-col gap-10">
-            <Tasks tasks={tasks} list={taskList} slug={slug} tableCompleted={false} />
+            <Board tasks={tasks} list={taskList} slug={slug} tableCompleted={false} />
             <TasksDropdown tasksCompleted={tasksCounted.completed}>
-                <Tasks tasks={tasks} list={taskList} slug={slug} tableCompleted={true} />
+                <Board tasks={tasks} list={taskList} slug={slug} tableCompleted={true} />
             </TasksDropdown>
         </div>
     </>;

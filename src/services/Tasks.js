@@ -1,9 +1,13 @@
 
 export const getTasks = (accessToken, {slug}) => {
-    const base = process.env.BASE_URL
-    const url = `${base}` + `/tasks?list=${slug}`
-    console.log(url)
-
+    let url = '';
+    if(slug == "upcoming"){
+        const base = process.env.BASE_URL
+        url = `${base}` + `/tasks/upcoming`
+    } else{
+        const base = process.env.BASE_URL
+        url = `${base}` + `/tasks?list=${slug}`
+    }
     return fetch(url, {
         method: 'GET',
         headers: {

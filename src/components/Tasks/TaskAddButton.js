@@ -13,11 +13,11 @@ export default function TaskAddButton({ list, slug }) {
     const backgroundRef = useRef(null);
 
     useEffect(() => {
+        // Effect created to close "Task Create" when click background
         const handleClick = (event) => {
             if (backgroundRef.current && !backgroundRef.current.contains(event.target) && isReadyToClose) {
                 setIsOpen(false);
                 setIsReadyToClose(false);
-                console.log('closing');
             }
         };
 
@@ -37,8 +37,6 @@ export default function TaskAddButton({ list, slug }) {
         if(data.title === '') return;
 
         const accessToken = await getAccessTokenClient();
-        setIsOpen(false);
-        setIsReadyToClose(false);
         createSimpleTask(accessToken, data).then(() => {
             setNewTask('');
             router.refresh();
@@ -52,9 +50,7 @@ export default function TaskAddButton({ list, slug }) {
     const handleOpen = () => {
         if(!isOpen){
             setIsOpen(true);
-            setTimeout(() => {
-                setIsReadyToClose(true);
-            }, 250);
+            setIsReadyToClose(true);
         }
     }
 

@@ -16,10 +16,10 @@ export default function ListElement({id,name,list_uuid, icon, deleteButton = fal
         <li key={id} className={`
         flex cursor-pointer
         rounded-md p-2 text-sm text-gray-700
-        dark:text-white dark:hover:bg-gray-700
+        dark:hover:bg-gray-700
         dark:focus:ring-gray-700 justify-between hover:text-gray-900 hover:bg-gray-200 dark:hover:text-gray-300
         color-red-500 font-bold-400
-        ${isSelected ? 'bg-white dark:bg-slate-900 text-primary-700 dark:text-primary-700' : ''}
+        ${isSelected ? 'bg-white dark:bg-slate-900 text-primary-700 dark:text-primary-500' : ' dark:text-white'}
         `}>
             <Link href={`/lists/${list_uuid}`} className="w-full">
                 <div className="flex items-center justify-start gap-2">

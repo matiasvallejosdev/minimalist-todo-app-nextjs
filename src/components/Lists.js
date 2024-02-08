@@ -9,15 +9,14 @@ export default async function TasksList({req}) {
     let lists = await getLists( accessToken);
     lists = lists.filter(e => e.name !== 'inbox');
 
-    // TODO: Upcoming temporaliy disable until backend was updated
     return <>
         <ul className="flex flex-col gap-1.5">
             <ListElement key={'1-inbox'} id={'1-inbox'} name={'Inbox'} list_uuid='inbox' icon={<IconInbox size={17} />} deleteButton={false} 
                 isSelected={true}
             />
-            {/* <ListElement key={'2-upcoming'} id={'2-upcoming'} name={'Upcoming'} list_uuid='upcoming' icon={<IconCalendar size={17} />} deleteButton={false}
+            <ListElement key={'2-upcoming'} id={'2-upcoming'} name={'Upcoming'} list_uuid='upcoming' icon={<IconCalendar size={17} />} deleteButton={false}
                 isSelected={false}
-            /> */}
+            />
             {
                 lists.map((list) => {
                     const {id, name, list_uuid, created_by} = list;

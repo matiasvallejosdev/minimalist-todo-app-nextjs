@@ -15,7 +15,7 @@ export default function ListActions({list}) {
     
     return <>
         <div className="relative flex gap-2 items-center justify-start">
-            <div className="flex items-center justify-center">
+            {/* <div className="flex items-center justify-center">
                 <Image alt={user.name} width={100} height={100} src={user.picture} 
                 className="w-7 rounded-3xl select-none cursor-pointer" 
                 onClick={() => handleOpenShare()}
@@ -23,7 +23,7 @@ export default function ListActions({list}) {
             </div>
             <IconUserPlus size={24} className="text-gray-400 cursor-pointer"
             onClick={() => handleOpenShare()}
-            />
+            /> */}
             <IconDotsVertical size={24} 
             className="text-gray-400 cursor-pointer
             select-none
@@ -32,7 +32,7 @@ export default function ListActions({list}) {
             />
             {
                 actionOpen && 
-                <div className="absolute top-0 right-0 mt-12 w-48 z-20
+                <div className="absolute top-0 right-0 mt-8 w-48 z-20
                 flex flex-col gap-2 py-1.5 rounded-md bg-white dark:bg-slate-800 shadow-md
                 dark:shadow-slate-900
                 items-center justify-center

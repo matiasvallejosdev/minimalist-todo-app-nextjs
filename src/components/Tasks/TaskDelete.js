@@ -19,7 +19,7 @@ export default function TaskDelete({task}){
     }
 
     return<>
-        <button className="hover:text-gray-600 text-gray-300 px-2 dark:hover:text-white dark:text-gray-400" onClick={handleDelete}>
+        <button className="hover:text-gray-600 text-gray-300 pr-2 dark:hover:text-white dark:text-gray-400" onClick={handleDelete}>
             <IconTrash size={20}/>
         </button>
     </>
