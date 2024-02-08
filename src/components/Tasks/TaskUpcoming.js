@@ -9,7 +9,7 @@ import { getDateStatus } from '@/src/utils/DateUtilities';
 export default function TaskUpcoming({ task }) {
   const { task_uuid } = task;
   const [isOpen, setIsOpen] = useState(false);
-  const defaultValue = new Date(task.due_date).toISOString().split('T')[0];
+  const defaultValue = task.date == null ? new Date().toISOString().split('T')[0]: new Date(task.due_date).toISOString().split('T')[0];
   const [date, setDate] = useState(defaultValue);
   const router = useRouter();
 
@@ -42,7 +42,7 @@ export default function TaskUpcoming({ task }) {
               setIsOpen(!isOpen);
             }}
           >
-            <span className="text-sm">{getDateStatus(new Date(task.due_date).toISOString().slice(0, 10))}</span>
+            <span className="text-sm">{new Date(task.due_date).toISOString().split('T')[0]}</span>
           </button>
         </>
       ) : (

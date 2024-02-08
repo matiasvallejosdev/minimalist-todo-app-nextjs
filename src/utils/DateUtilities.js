@@ -4,7 +4,7 @@ export function getDateStatus(inputDateStr) {
   const date = new Date(inputDateStr);
   
   // Extract the month, day, and year
-  const day = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = (date.getMonth()).toString().padStart(2, '0');
   const month = (date.getDate() + 1).toString().padStart(2, '0');
   const year = date.getFullYear();
   
