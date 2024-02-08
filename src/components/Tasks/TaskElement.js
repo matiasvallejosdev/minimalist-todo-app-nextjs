@@ -18,7 +18,6 @@ export default function TaskElement({ task }) {
       <li
         key={task_uuid}
         className={`
-            relative
             cursor-pointer
             flex gap-3 items-center justify-between
             ${completed ? 'line-through' : ''}
