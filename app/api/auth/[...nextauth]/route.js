@@ -46,6 +46,7 @@ const authOptions = {
                             "login",
                             account.provider,
                         )
+                        console.log("Url: ", url)
                         
                         const response = await fetch(url, {
                             method: "POST",
@@ -58,6 +59,7 @@ const authOptions = {
                             }),
                         }
                         );
+                        console.log("Response", response)
                         
                         const data = await response.json();
 
