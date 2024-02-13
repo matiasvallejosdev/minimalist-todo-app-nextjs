@@ -70,7 +70,7 @@ export default function TaskAddButton({ list, slug }) {
                         w-full
                         dark:hover:bg-gray-800
                         h-8
-                        pl-2
+                        pl-7
                     "
                     onBlur={handleCreate}
                     onKeyDown={(e) => {
@@ -99,7 +99,7 @@ export default function TaskAddButton({ list, slug }) {
                     </form>
                     :
                     <button
-                        className="pl-1 py-1 w-full text-left flex gap-2 items-center justify-start 
+                        className="pl-6 py-1 w-full text-left flex gap-2 items-center justify-start 
                         text-gray-700 hover:text-black dark:hover:text-white dark:text-gray-300"
                         onClick={handleOpen}>
                         <IconPlus size={20} />

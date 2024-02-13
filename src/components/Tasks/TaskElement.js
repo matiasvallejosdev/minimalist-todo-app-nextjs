@@ -12,7 +12,6 @@ export default function TaskElement({ task }) {
   const [open, setOpen] = useState(false);
   const { task_uuid, completed } = task;
 
-  // TODO: Create an icon for drag and drop
   return (
     <>
       <li
@@ -28,8 +27,8 @@ export default function TaskElement({ task }) {
         onMouseEnter={(e) => setOpen(true)}
         onMouseLeave={(e) => setOpen(false)}
       >
-        {/* <IconMenu2 size={15} className={`absolute ${open ? "text-gray-400 cursor-grab" : "text-white"}`}/> */}
-        <div className="flex items-center justify-start gap-3 w-full|">
+        {open && <IconMenu2 size={15} className={`absolute ${open ? 'text-gray-400 cursor-grab' : 'text-gray-400'}`} />}
+        <div className="pl-6 flex items-center justify-start gap-3 w-full|">
           <TaskCheckbox task={task} />
           <TaskRow task={task} />
         </div>
