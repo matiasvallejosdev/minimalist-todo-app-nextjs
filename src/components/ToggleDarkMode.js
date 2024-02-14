@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import {useTheme} from 'next-themes';
 import {IconSun, IconMoon} from '@tabler/icons-react';
 
-export default function ToggleDarkMode({extendedMode}) {
+export default function ToggleDarkMode({extendedMode, styles}) {
     const [mounted, setMounted] = useState(false);
     const {theme, setTheme} = useTheme();
 
@@ -23,7 +23,9 @@ export default function ToggleDarkMode({extendedMode}) {
             dark:text-gray-400 dark:hover:bg-gray-700
             dark:focus:ring-gray-700 hover:text-gray-900 hover:bg-gray-200 dark:hover:text-gray-100
             color-red-500 font-bold-400
-            ${extendedMode && 'w-full'}`}
+            ${extendedMode && 'w-full'}
+            ${styles}
+            `}
         >
             {mounted && theme === 'dark' ? <IconMoon className="h-5 w-5"/> : <IconSun className="h-5 w-5"/>}
             {extendedMode === true && <span>

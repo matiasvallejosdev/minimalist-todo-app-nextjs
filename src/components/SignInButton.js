@@ -14,7 +14,7 @@ export default function SignInButton(){
         <button onClick={() =>{
             return handleLogin();
         }}
-                className="btn btn-primary px-20 bg-blue-500 py-2 text-white rounded-md font-semibold flex gap-2 items-center justify-center">
+                className="btn btn-primary px-10 md:px-20 bg-blue-500 py-2 text-white rounded-md font-semibold flex gap-2 items-center justify-center">
             <IconBrandGoogle size="20" />
             Continue with Google
         </button>
