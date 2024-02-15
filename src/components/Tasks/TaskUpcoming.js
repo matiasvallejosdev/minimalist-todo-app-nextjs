@@ -4,12 +4,12 @@ import { useRouter } from 'next/navigation';
 import { getAccessTokenClient } from '@/src/services/AuthClient';
 import { useState } from 'react';
 import { updateTask } from '@/src/services/Tasks';
-import { getDateStatus } from '@/src/utils/DateUtilities';
 
 export default function TaskUpcoming({ task }) {
   const { task_uuid } = task;
   const [isOpen, setIsOpen] = useState(false);
-  const defaultValue = task.date == null ? new Date().toISOString().split('T')[0]: new Date(task.due_date).toISOString().split('T')[0];
+  const defaultValue =
+    task.date == null ? new Date().toISOString().split('T')[0] : new Date(task.due_date).toISOString().split('T')[0];
   const [date, setDate] = useState(defaultValue);
   const router = useRouter();
 
@@ -58,17 +58,16 @@ export default function TaskUpcoming({ task }) {
         </>
       )}
       {isOpen && (
-        <div className="background-div">
+        <div className="">
           <div
             className="h-auto bg-white flex flex-col gap-2 cursor-pointer
             rounded-md p-2.5 text-sm dark:focus:ring-gray-700 items-center
             shadow-lg
-            py-6 px-8 centered-div top-1/4 z-10 w-1/4
+            py-6 px-8 absolute right-0 top-6 z-10 w-auto
             bg-before
             dark:bg-slate-800
 "
           >
-            <h4 className="text-left w-full text-lg font-semibold mb-2">Select Date</h4>
             <form id="create-list" name="create-list" onSubmit={(e) => handleSumbit(e)} className="w-full">
               <input
                 type="date"

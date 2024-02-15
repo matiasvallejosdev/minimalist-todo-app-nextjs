@@ -32,13 +32,13 @@ export default function TaskRow({task}) {
             isOpen ? <>
                 <input type="text" value={taskTitle} autoFocus onBlur={handleBlur} onChange={(e) => {
                     setTaskTitle(e.target.value);
-                }} className={`p-0 rounded-md bg-inherit w-full border-none
+                }} className={`p-0 text-sm rounded-md bg-inherit w-full border-none
                                 focus:outline-none focus:border-none focus:ring-0 text-gray-900
                                 placeholder-gray-500 dark:placeholder-gray-400 dark:text-gray-100
                                 ${isOpen ? 'rounded-none' : ''}
                                 `}
                 />
-            </> : <div className="cursor-text" onClick={handleClick}>
+            </> : <div className="cursor-text text-sm" onClick={handleClick}>
                 {taskTitle}
             </div>
         }

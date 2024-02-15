@@ -17,6 +17,7 @@ export default function TaskElement({ task }) {
       <li
         key={task_uuid}
         className={`
+            relative
             cursor-pointer
             flex gap-3 items-center justify-between
             ${completed ? 'line-through' : ''}
@@ -27,8 +28,13 @@ export default function TaskElement({ task }) {
         onMouseEnter={(e) => setOpen(true)}
         onMouseLeave={(e) => setOpen(false)}
       >
-        {open && <IconMenu2 size={15} className={`absolute ${open ? 'text-gray-400 cursor-grab' : 'text-gray-400'}`} />}
-        <div className="pl-6 flex items-center justify-start gap-3 w-full|">
+        {open && (
+          <div 
+          className="absolute flex items-center justify-center bottom-0 p-1 pr-3 -left-6 -z-20 bg-gray-100 dark:bg-gray-800 rounded-l-md h-full min-w-fit">
+            <IconMenu2 size={16} className={`${open ? 'text-gray-400 cursor-grab' : 'text-gray-400'}`} />
+          </div>
+        )}
+        <div className="flex items-center justify-start gap-3 w-full|">
           <TaskCheckbox task={task} />
           <TaskRow task={task} />
         </div>

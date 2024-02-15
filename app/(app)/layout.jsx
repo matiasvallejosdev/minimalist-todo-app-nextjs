@@ -8,8 +8,8 @@ export default function TasksLayout({children}) {
                 <div className="bg-gray-100 dark:bg-slate-800">
                     <Sidebar/>
                 </div>
-                <div className="w-full flex-1 px-12 py-6">
-                    <div className="max-w-2xl">
+                <div className="w-full flex-1 px-6 py-3 lg:px-12 lg:py-6">
+                    <div className="w-full md:max-w-2xl">
                         {children}
                     </div>
                 </div>

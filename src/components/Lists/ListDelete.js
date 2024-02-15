@@ -21,12 +21,13 @@ export default function ListDelete({list}){
 
     return<>
         <button className="flex gap-3 cursor-pointer justify-start
-        rounded-md p-4 text-sm text-gray-700
+        rounded-md p-4 text-xs md:text-sm text-gray-700
         dark:text-white dark:hover:bg-slate-700
         dark:focus:ring-gray-700 hover:text-gray-900 hover:bg-gray-200 dark:hover:text-gray-100
         color-red-500 font-bold-400 w-full
         items-center
-        h-8
+        h-6
+        lg:h-8
         " onClick={(e) => handleDelete(e)}>
             <IconTrash size="18"/>
             Delete List

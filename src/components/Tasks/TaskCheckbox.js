@@ -22,7 +22,7 @@ export default function TaskCheckbox({ task }) {
 
     return <>
         {
-            completed ? <IconCheck className="text-blue-500" onClick={handleCheckbox}/> : <input
+            completed ? <IconCheck size={20} className="text-blue-500" onClick={handleCheckbox}/> : <input
                 className="focus:ring-blue-500 h-4 w-4 text-blue-500 border-gray-300 
                 rounded cursor-pointer
                 dark:bg-slate-700 dark:border-slate-400

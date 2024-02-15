@@ -13,10 +13,10 @@ export default function TasksDropdown({children, tasksCompleted}) {
     return <>
         <div className="relative">
             <div className="absolute top-0 left-0 w-full bg-gray-300 dark:bg-gray-500" style={{ height: '0.05rem'}}></div>
-            <h4 className="flex items-center justify-between text-md py-3 cursor-pointer" onClick={(e) => handleOpen(e)} style={{ userSelect: 'none' }}>
+            <h4 className="flex items-center justify-between text-base py-3 cursor-pointer text-gray-600 dark:text-gray-300" onClick={(e) => handleOpen(e)} style={{ userSelect: 'none' }}>
                 <span>Completed ({tasksCompleted})</span>
                 {
-                    open ? <IconChevronUp className="inline-block ml-2" /> : <IconChevronDown className="inline-block ml-2" />
+                    open ? <IconChevronUp className="inline-block ml-2 text-gray-600 dark:text-gray-300" /> : <IconChevronDown className="inline-block ml-2 text-gray-600 dark:text-gray-300" />
                 }
             </h4>
             {

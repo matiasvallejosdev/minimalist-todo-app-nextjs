@@ -1,6 +1,6 @@
 
 module.exports.SITE = {
-  name: 'Minimalist ToDo App',
+  name: 'Minimalist - Getting Thinks Done',
 
   origin: 'minimalist-to-do.vercel.app',
   basePathname: '/',

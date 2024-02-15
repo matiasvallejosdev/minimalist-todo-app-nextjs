@@ -57,8 +57,9 @@ export default function TaskAddButton({ list, slug }) {
     return <>
         <li key="new-task" className={`
             cursor-pointer
-            flex gap-3 items-center justify-between
+            flex gap-4 items-center justify-between
             w-full
+            mt-0.5
             `}
             >
             {
@@ -69,8 +70,9 @@ export default function TaskAddButton({ list, slug }) {
                         hover:bg-gray-100 p-1 rounded-md
                         w-full
                         dark:hover:bg-gray-800
-                        h-8
-                        pl-7
+                        h-full
+                        pl-1
+                        pt-1
                     "
                     onBlur={handleCreate}
                     onKeyDown={(e) => {
@@ -88,7 +90,7 @@ export default function TaskAddButton({ list, slug }) {
                             className="h-full rounded-md bg-inherit w-full border-none
                                 focus:outline-none focus:border-none focus:ring-0 text-black
                                 placeholder-gray-500 dark:placeholder-gray-400 dark:text-gray-100
-                                p-0
+                                p-0 text-sm
                                 "
                             placeholder="New Task"
                             autoFocus
@@ -99,8 +101,10 @@ export default function TaskAddButton({ list, slug }) {
                     </form>
                     :
                     <button
-                        className="pl-6 py-1 w-full text-left flex gap-2 items-center justify-start 
-                        text-gray-700 hover:text-black dark:hover:text-white dark:text-gray-300"
+                        className="pt-1 w-full text-left flex gap-2 items-center justify-start 
+                        text-gray-700 hover:text-black dark:hover:text-white dark:text-gray-300
+                        text-sm
+                        "
                         onClick={handleOpen}>
                         <IconPlus size={20} />
                         <span>New Task</span>

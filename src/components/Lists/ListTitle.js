@@ -33,13 +33,13 @@ export default function ListTitle({ list }) {
             isOpen ? <>
                 <input type="text" value={listName} autoFocus onBlur={handleBlur} onChange={(e) => {
                     setListName(e.target.value);
-                }} className={`p-0 text-4xl pb-3 bg-inherit border-none
+                }} className={`p-0 bg-inherit border-none
                                     focus:outline-none focus:border-none focus:ring-0 text-gray-900
                                     placeholder-gray-500 dark:placeholder-gray-400 dark:text-gray-100
                                     ${isOpen ? 'rounded-none' : ''}
                                     `}
                 />
-            </> : <h4 onClick={handleClick} className="text-4xl pb-3 cursor-text">
+            </> : <h4 onClick={handleClick} className="text-2xl lg:text-3xl cursor-text">
                 {
                     list.name == 'inbox' ? 'Inbox' : listName
                 }

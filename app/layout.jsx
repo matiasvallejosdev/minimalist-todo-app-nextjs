@@ -1,23 +1,26 @@
 import '@/src/styles/globals.css'
 import '@/src/styles/tailwind.css'
+import {SITE} from '@/src/config'
 
-import {IBM_Plex_Sans as CustomFont} from 'next/font/google';
+import {Roboto as CustomFont} from 'next/font/google';
 import ThemeModeProvider from "../src/context/ThemeModeProvider";
 
 const customFont = CustomFont({
     subsets: ['latin'],
     variable: '--font-custom',
-    weight: ['400', '500', '600', '700'],
+    weight: ['400', '500', '700'],
 });
+
+export const metadata = {
+    title: SITE.title,
+    description: SITE.description,
+}
 
 export default function RootLayout({children}) {
     return (
-        <html lang="en" className={`${customFont.variable}`}>
-        <head>
-            <title>Minimalist</title>
-        </head>
+        <html lang="en">
         <body
-            className="relative bg-white dark:bg-slate-900 md:bg-white/90 md:backdrop-blur-sm dark:md:bg-slate-900/90">
+            className={`${customFont.className} antialiased relative bg-white dark:bg-slate-900`}>
             <ThemeModeProvider key="themeprovider">
                 {children}
             </ThemeModeProvider>

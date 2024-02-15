@@ -19,6 +19,7 @@ export default function useAccessToken(){
             .then((accessToken) => {
                 setToken(accessToken);
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token === '']);
 
     return {token};

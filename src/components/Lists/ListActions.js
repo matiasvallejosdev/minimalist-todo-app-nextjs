@@ -14,17 +14,11 @@ export default function ListActions({list}) {
     }
     
     return <>
-        <div className="relative flex gap-2 items-center justify-start">
-            {/* <div className="flex items-center justify-center">
-                <Image alt={user.name} width={100} height={100} src={user.picture} 
-                className="w-7 rounded-3xl select-none cursor-pointer" 
-                onClick={() => handleOpenShare()}
-                />
-            </div>
-            <IconUserPlus size={24} className="text-gray-400 cursor-pointer"
+        <div className="relative flex gap-2 items-center justify-center">
+            {/* <IconUserPlus size={18} className="text-gray-400 cursor-pointer"
             onClick={() => handleOpenShare()}
             /> */}
-            <IconDotsVertical size={24} 
+            <IconDotsVertical size={18} 
             className="text-gray-400 cursor-pointer
             select-none
             " 
