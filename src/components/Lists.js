@@ -35,20 +35,20 @@ export default async function TasksList({ req }) {
             style={{ height: '0.05rem' }}
           ></div>
         </div>
-        {lists.map((list) => {
-          const { id, name, list_uuid, created_by } = list;
-          return (
-            <ListElement
-              key={id}
-              id={id}
-              name={name}
-              list_uuid={list_uuid}
-              icon={<IconMenu2 size={17} />}
-              deleteButton={true}
-              isSelected={false}
-            />
-          );
-        })}
+          {lists.map((list) => {
+            const { id, name, list_uuid, created_by } = list;
+            return (
+              <ListElement
+                key={id}
+                id={id}
+                name={name}
+                list_uuid={list_uuid}
+                icon={<IconMenu2 size={17} />}
+                deleteButton={true}
+                isSelected={false}
+              />
+            );
+          })}
       </ul>
     </>
   );

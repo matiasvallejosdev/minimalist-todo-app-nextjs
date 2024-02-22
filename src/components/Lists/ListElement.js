@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { limitCharacters } from '@/src/utils/Utilities';
+import { limitCharacters } from '@/src/utils/Utils';
 import useLargeScreen from '@/src/hooks/useLargeScreen';
 
 const getLastPath = (fullUrl) => {

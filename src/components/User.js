@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { useState } from 'react';
 import SignOutButton from './SignOutButton';
-import { limitCharacters } from '@/src/utils/Utilities';
+import { limitCharacters } from '@/src/utils/Utils';
 
 export default function User() {
   const { user } = useUser();
@@ -13,10 +13,10 @@ export default function User() {
   return (
     <>
       <div
-        className="relative flex flex-col lg:flex-row gap-3 items-center justify-start cursor-pointer pt-4 lg:pt-0"
+        className="relative flex flex-col lg:flex-row gap-3 items-center justify-start cursor-pointer p-0 sm:pt-4 lg:pt-0"
         onClick={() => setOpen(!open)}
       >
-        <Image alt={user.name} width={115} height={115} src={user.picture} className="w-11 rounded-3xl" />
+        <Image alt={user.name} width={100} height={100} src={user.picture} className="w-12 rounded-3xl" />
         <div className="hidden lg:flex flex-col gap-1 w-full">
           <h5 className="text-base">{`${user.name}`}</h5>
           <p className="text-sm text-gray-500 dark:text-gray-400">{limitCharacters(user.email, 20)}</p>

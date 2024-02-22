@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-
 import { IconMenu2 } from '@tabler/icons-react';
 
 import TaskCheckbox from '@/src/components/Tasks/TaskCheckbox';
@@ -8,7 +7,7 @@ import TaskDelete from '@/src/components/Tasks/TaskDelete';
 import TaskUpcoming from '@/src/components/Tasks/TaskUpcoming';
 import TaskRow from '@/src/components/Tasks/TaskRow';
 
-export default function TaskElement({ task }) {
+export default function TaskElement({ tasksClient, task }) {
   const [open, setOpen] = useState(false);
   const { task_uuid, completed } = task;
 

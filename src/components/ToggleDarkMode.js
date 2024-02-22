@@ -19,13 +19,14 @@ export default function ToggleDarkMode({ extendedMode, styles }) {
     <button
       onClick={handleOnClick}
       className={`flex gap-2 cursor-pointer justify-center lg:justify-start
-            rounded-md p-2 text-sm text-gray-700
-            dark:text-gray-400 dark:hover:bg-gray-700
-            dark:focus:ring-gray-700 hover:text-gray-900 hover:bg-gray-200 dark:hover:text-gray-100
+            rounded-md sm:p-2 text-sm text-gray-700
+            dark:text-gray-400 sm:dark:hover:bg-gray-700
+            dark:focus:ring-gray-700 hover:text-gray-500 sm:hover:bg-gray-200 dark:hover:text-gray-100
             color-red-500 font-bold-400
             ${extendedMode && 'w-full'}
             ${styles}
-            h-14
+            h-auto
+            sm:h-14
             w-full
             lg:h-full
             items-center

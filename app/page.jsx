@@ -14,11 +14,12 @@ export default async function Home() {
           <p className="text-lg md:text-2xl">The easiest way to keep track of the stuff you want to do.</p>
           <LoginButton />
           <Image
-            src="/assets/minimalist.png"
+            src="/minimalist.gif"
             alt="Minimalist To Do"
             width={1080}
             height={720}
             priority
+            className="rounded-xl"
           />
         </section>
         <section className="flex flex-col gap-10 items-center justify-between pb-20 md:flex-row md:gap-20">

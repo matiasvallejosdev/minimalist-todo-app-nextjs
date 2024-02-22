@@ -3,7 +3,7 @@ import '@/src/styles/tailwind.css'
 import {SITE} from '@/src/config'
 
 import {Roboto as CustomFont} from 'next/font/google';
-import ThemeModeProvider from "../src/context/ThemeModeProvider";
+import Providers from '@/src/context/Providers'
 
 const customFont = CustomFont({
     subsets: ['latin'],
@@ -21,9 +21,9 @@ export default function RootLayout({children}) {
         <html lang="en">
         <body
             className={`${customFont.className} antialiased relative bg-white dark:bg-slate-900`}>
-            <ThemeModeProvider key="themeprovider">
+            <Providers>
                 {children}
-            </ThemeModeProvider>
+            </Providers>
         </body>
         </html>
     )

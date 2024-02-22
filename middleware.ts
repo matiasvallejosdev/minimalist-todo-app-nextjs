@@ -1,4 +1,3 @@
-// export { default } from "next-auth/middleware"
 import {NextResponse, NextRequest} from "next/server";
 import {withAuth} from "next-auth/middleware";
 import {decode} from "next-auth/jwt";
