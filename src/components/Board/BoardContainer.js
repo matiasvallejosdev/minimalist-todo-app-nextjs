@@ -1,5 +1,5 @@
 'use client';
-import TaskProvider, { useTasksContext } from '@/src/context/TaskProvider';
+import TaskProvider from '@/src/context/TaskProvider';
 import Board from './Board';
 import TasksDropdown from '@/src/components/Tasks/TasksDropdown';
 

@@ -1,14 +1,8 @@
 'use client';
 import TaskElement from '@/src/components/Tasks/TaskElement';
 import TaskAddButton from '@/src/components/Tasks/TaskAddButton';
-import { useTasksContext, useTasksDispatchContext} from '@/src/context/TaskProvider';
 
 export default function Board({ tasks, list, slug, tableCompleted }) {
-  // const tasksClient = useTasksContext();
-  // const tasksDispatch = useTasksDispatchContext();
-
-  // tasksDispatch(tasks, 'set')
-  // console.log(tasksClient, tasksDispatch);
   return (
     <>
       <ul className="flex flex-col items-start justify-center w-full">
