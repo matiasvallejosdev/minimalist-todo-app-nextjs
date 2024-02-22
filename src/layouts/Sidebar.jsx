@@ -1,6 +1,6 @@
 import User from '../../src/components/User';
 import ToggleDarkMode from '../../src/components/ToggleDarkMode';
-import TasksList from '@/src/components/Lists';
+import Lists from '@/src/components/Lists/Lists';
 import ListAddButton from '../../src/components/Lists/ListAddButton';
 import { Suspense } from 'react';
 import { ListsSkeleton } from '@/src/streaming/ListSkeleton';
@@ -13,7 +13,7 @@ export default function Sidebar() {
         <div className="flex flex-col justify-between h-full mt-1">
           <nav className="flex flex-col gap-1">
             <Suspense fallback={<ListsSkeleton />}>
-              <TasksList />
+              <Lists />
               <ListAddButton />
             </Suspense>
           </nav>

@@ -3,7 +3,7 @@ import { getLists } from '@/src/services/Lists';
 import { IconMenu2, IconCalendar, IconInbox } from '@tabler/icons-react';
 import { getAccessTokenServer } from '@/src/services/AuthServer';
 
-export default async function TasksList({ req }) {
+export default async function Lists() {
   const accessToken = await getAccessTokenServer();
   let lists = await getLists(accessToken);
   lists = lists.filter((e) => e.name !== 'inbox');
@@ -36,7 +36,7 @@ export default async function TasksList({ req }) {
           ></div>
         </div>
           {lists.map((list) => {
-            const { id, name, list_uuid, created_by } = list;
+            const { id, name, list_uuid } = list;
             return (
               <ListElement
                 key={id}

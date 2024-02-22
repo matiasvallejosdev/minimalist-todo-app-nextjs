@@ -1,56 +1,124 @@
 'use client';
 import { IconCirclePlus, IconSend } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { createList } from '@/src/services/Lists';
 import { useRouter } from 'next/navigation';
 import { getAccessTokenClient } from '@/src/services/AuthClient';
+import { IconMenu2 } from '@tabler/icons-react';
 
 export default function ListAddButton() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState('');
-  const router = useRouter();
+    const [isOpen, setIsOpen] = useState(false);
+    const [name, setName] = useState('');
+    const router = useRouter();
+    const backgroundRef = useRef(null);
+    const [isReadyToClose, setIsReadyToClose] = useState(false);
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+    useEffect(() => {
+        const handleClick = (event) => {
+            if (backgroundRef.current && !backgroundRef.current.contains(event.target) && isReadyToClose) {
+                setIsOpen(false);
+                setIsReadyToClose(false);
+            }
+        };
 
-  const handleSumbit = async (e) => {
-    e.preventDefault();
-    if (name === '') {
-      alert('Name is required. Please enter a name!');
-      return;
-    }
+        document.addEventListener('click', handleClick);
+        return () => {
+            document.removeEventListener('click', handleClick);
+        };
+    }, [backgroundRef, isReadyToClose]);
 
-    const accessToken = await getAccessTokenClient();
+    const handleChange = (e) => {
+        setName(e.target.value);
+    };
 
-    createList(accessToken, { name }).then((res) => {
-      const { list_uuid } = res;
-      setIsOpen(false);
-      setName('');
-      router.refresh();
-      router.push(`/lists/${list_uuid}`);
-    });
-  };
+    const handleCreate = async (e) => {
+        e.preventDefault();
+        if (name === '') {
+            return;
+        }
+        const accessToken = await getAccessTokenClient();
+        createList(accessToken, { name }).then((res) => {
+            const { list_uuid } = res;
+            setName('');
+            router.push(`/lists/${list_uuid}`);
+            router.refresh();
+            setIsOpen(false)
+            setIsReadyToClose(false)
+        });
+    };
 
-  return (
-    <>
-      {!isOpen ? (
-        <li
-          key="create-button"
-          className="flex flex-col lg:flex-row gap-2 cursor-pointer justify-center lg:justify-start items-center
+    const handleOpen = () => {
+        if (!isOpen) {
+            setIsOpen(true);
+            setIsReadyToClose(true);
+        }
+    };
+
+    return (
+        <>
+            {!isOpen ? (
+                <li
+                    key="create-button"
+                    className="flex flex-col lg:flex-row gap-2 cursor-pointer justify-center lg:justify-start items-center
             rounded-md p-2 text-gray-700
             dark:text-white dark:hover:bg-gray-700
             dark:focus:ring-gray-700 hover:text-gray-900 hover:bg-gray-200 dark:hover:text-gray-100
             color-red-500 font-bold-400
             text-xs lg:text-sm
             "
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <IconCirclePlus size={18} />
-          <span className="text-center">Create List</span>
-        </li>
-      ) : (
-        <div className="background-div">
+                    onClick={() => handleOpen()}
+                >
+                    <IconCirclePlus size={18} />
+                    <span className="text-center">Create List</span>
+                </li>
+            ) : (
+                <form
+                    ref={backgroundRef}
+                    id="create-task"
+                    name="create-task"
+                    className="
+                        cursor-pointer
+                        flex gap-3 items-center justify-between
+                        hover:bg-gray-100 p-2 rounded-md
+                        w-full
+                        dark:hover:bg-gray-800
+                        h-10
+                    "
+                    onBlur={handleCreate}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            handleCreate(e);
+                        }
+                        if (e.key == 'Escape') {
+                            e.preventDefault();
+                            setIsOpen(false);
+                            setIsReadyToClose(false);
+                        }
+                    }}
+                >
+                    <IconMenu2 size={20} />
+                    <input
+                        type="text"
+                        className="h-full rounded-md bg-inherit w-full border-none
+                                focus:outline-none focus:border-none focus:ring-0 text-black
+                                placeholder-gray-500 dark:placeholder-gray-400 dark:text-gray-100
+                                p-0
+                                flex items-center justify-start gap-2 flex-col lg:flex-row text-xs lg:text-sm
+                                "
+                        placeholder="New List"
+                        autoFocus
+                        value={name}
+                        onChange={(e) => handleChange(e)}
+                    />
+                </form>
+            )}
+        </>
+    );
+}
+
+{
+    /* <div className="background-div">
           <div
             className="h-auto bg-white flex flex-col gap-2 cursor-pointer
             rounded-md p-2.5 text-sm dark:focus:ring-gray-700 items-center
@@ -88,8 +156,5 @@ export default function ListAddButton() {
               </button>
             </div>
           </div>
-        </div>
-      )}
-    </>
-  );
+        </div> */
 }

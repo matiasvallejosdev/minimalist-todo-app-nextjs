@@ -26,7 +26,7 @@ export default function ListActions({list}) {
             />
             {
                 actionOpen && 
-                <div className="absolute top-0 right-0 mt-8 w-48 z-20
+                <div className="absolute top-0 right-0 mt-4 md:mt-6 w-48 z-20
                 flex flex-col gap-2 py-1.5 rounded-md bg-white dark:bg-slate-800 shadow-md
                 dark:shadow-slate-900
                 items-center justify-center

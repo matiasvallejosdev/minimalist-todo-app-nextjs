@@ -14,8 +14,8 @@ export default function ListDelete({list}){
 
         deleteList(accessToken, list_uuid)
             .then(() => {
+                router.push('/lists/inbox');
                 router.refresh();
-                router.push('/lists');
             })
     }
 

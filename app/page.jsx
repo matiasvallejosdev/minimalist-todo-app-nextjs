@@ -2,7 +2,7 @@ import Header from '@/src/layouts/Header';
 import Footer from '@/src/layouts/Footer';
 import Image from 'next/image';
 import { multiSection } from '@/src/data/HomeData';
-import LoginButton from '@/src/components/SignInButton';
+import LoginButton from '@/src/components/Lists/SignInButton';
 
 export default async function Home() {
   return (

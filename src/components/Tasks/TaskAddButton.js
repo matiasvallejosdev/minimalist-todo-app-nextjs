@@ -80,6 +80,11 @@ export default function TaskAddButton({ list, slug }) {
                             e.preventDefault();
                             handleCreate();
                         }
+                        if(e.key == "Escape"){
+                            e.preventDefault();
+                            setIsOpen(false)
+                            setIsReadyToClose(false)
+                        }
                     }}
                     >
                         <input
