@@ -1,4 +1,4 @@
-# Minimalist Todo App
+# 📝 Minimalist Todo App
 
 [![GitHub top language](https://img.shields.io/github/languages/top/matiasvallejosdev/minimalist-todo-app-nextjs?color=1081c2)](https://github.com/matiasvallejosdev/minimalist-todo-app-nextjs/search?l=c%23)
 ![License](https://img.shields.io/github/license/matiasvallejosdev/minimalist-todo-app-nextjs?label=license&logo=github&color=f80&logoColor=fff)
