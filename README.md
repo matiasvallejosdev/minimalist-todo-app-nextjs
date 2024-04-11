@@ -6,7 +6,7 @@
 ![Stars](https://img.shields.io/github/stars/matiasvallejosdev/minimalist-todo-app-nextjs.svg)
 ![Watchers](https://img.shields.io/github/watchers/matiasvallejosdev/minimalist-todo-app-nextjs.svg)
 
-Experience Minimalist in action: [View Demo](https://minimalist-tasks.vercel.app/)
+Experience Minimalist in action: [View Production](https://minimalist-tasks.vercel.app/)
 
 ## 📘 Introduction
 
