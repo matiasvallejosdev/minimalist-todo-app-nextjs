@@ -19,6 +19,10 @@ Minimalist is a task management app that combines the power of Next.js and a Dja
 - **Task Management**: Efficient task handling with Todo-Rest-API.
 - **Responsive Design**: A clean and intuitive interface for all devices.
 
+## 🔗 Backend Repository
+
+Explore the backend API [Todo-Rest-API](https://github.com/matiasvallejosdev/todo-rest-api-django) developed with Django REST Framework.
+
 ## 🛠 Installation
 
 1. Clone the repository:
@@ -40,14 +44,6 @@ JWT_NAME=session
 ```
 4. Start the server:
 `npm run dev`
-
-## 🌐 Deploying
-
-For production deployment, follow Next.js guidelines and ensure the Todo-Rest-API backend is also deployed properly.
-
-## 🔗 Backend Repository
-
-Explore the backend API [Todo-Rest-API](https://github.com/matiasvallejosdev/todo-rest-api-django) developed with Django REST Framework.
 
 ## 💡 Usage
 
