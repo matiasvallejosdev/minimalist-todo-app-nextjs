@@ -10,7 +10,7 @@ const getLastPath = (fullUrl) => {
   return pathArray[pathArray.length - 1];
 };
 
-export default function ListElement({ id, name, list_uuid, icon, deleteButton = false }) {
+export default function ListElement({ id, name, list_uuid, icon }) {
   const pathname = usePathname();
   const { isLargeScreen } = useLargeScreen();
 

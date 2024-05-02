@@ -78,7 +78,7 @@ export default function ListAddButton() {
                     name="create-task"
                     className="
                         cursor-pointer
-                        flex gap-3 items-center justify-between
+                        flex gap-2 items-center justify-between
                         hover:bg-gray-100 p-2 rounded-md
                         w-full
                         dark:hover:bg-gray-800
@@ -106,7 +106,7 @@ export default function ListAddButton() {
                                 p-0
                                 flex items-center justify-start gap-2 flex-col lg:flex-row text-xs lg:text-sm
                                 "
-                        placeholder="New List"
+                        placeholder="List Name"
                         autoFocus
                         value={name}
                         onChange={(e) => handleChange(e)}

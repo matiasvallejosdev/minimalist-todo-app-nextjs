@@ -1,13 +1,14 @@
 'use client';
-import { useState } from 'react';
 import { IconMenu2 } from '@tabler/icons-react';
 
-import TaskCheckbox from '@/src/components/Tasks/TaskCheckbox';
-import TaskDelete from '@/src/components/Tasks/TaskDelete';
-import TaskUpcoming from '@/src/components/Tasks/TaskUpcoming';
-import TaskRow from '@/src/components/Tasks/TaskRow';
+import TaskCheckbox from '@/src/features/Board/components/TaskCheckbox';
+import TaskDelete from '@/src/features/Board/components/TaskDelete';
+import TaskUpcoming from '@/src/features/Board/components/TaskUpcoming';
+import TaskRowEdit from '@/src/features/Board/components/TaskRowEdit';
 
-export default function TaskElement({ tasksClient, task }) {
+import { useState } from 'react';
+
+export default function TaskElement({ task }) {
   const [open, setOpen] = useState(false);
   const { task_uuid, completed } = task;
 
@@ -35,7 +36,7 @@ export default function TaskElement({ tasksClient, task }) {
         )}
         <div className="flex items-center justify-start gap-3 w-full|">
           <TaskCheckbox task={task} />
-          <TaskRow task={task} />
+          <TaskRowEdit task={task} />
         </div>
         <div className="flex items-center justify-end">
           <div className="flex justify-end items-center">

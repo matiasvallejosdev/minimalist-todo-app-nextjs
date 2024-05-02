@@ -1,6 +1,6 @@
 import User from '../../src/components/User';
 import ToggleDarkMode from '../../src/components/ToggleDarkMode';
-import Lists from '@/src/components/Lists/Lists';
+import Lists from '@/src/components/Board/Lists';
 import ListAddButton from '../../src/components/Lists/ListAddButton';
 import { Suspense } from 'react';
 import { ListsSkeleton } from '@/src/streaming/ListSkeleton';

@@ -17,6 +17,7 @@ export default function TaskProvider({children}){
         tasksReducer,
         []
     );
+    const [listUuid, setListUuid] = useState(null);
 
 
     return<>
@@ -30,7 +31,16 @@ export default function TaskProvider({children}){
 
 function tasksReducer(tasks, action){
     switch(action.type){
-        case 'set':
+        case 'new':
+            return {
+                ...tasks,
+                [action.task.id]: action.task
+            }
+        case 'delete':
             return tasks
+        case 'update':
+            return tasks
+        default:
+            throw new Error(`Unknown action type: ${action.type}`);
     }
 }

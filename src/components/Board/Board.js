@@ -1,27 +1,44 @@
 'use client';
-import TaskElement from '@/src/components/Tasks/TaskElement';
-import TaskAddButton from '@/src/components/Tasks/TaskAddButton';
+// import { countTasks } from '@/src/services/Tasks';
+// import { getList } from '@/src/services/Lists';
+// import { getAccessTokenServer } from '@/src/services/AuthServer';
+// import { getTasks } from '@/src/services/Tasks';
 
-export default function Board({ tasks, list, slug, tableCompleted }) {
+import Tasks from './Tasks';
+import TasksDropdown from '../../features/Board/components/TasksDropdown';
+
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+import { setList, setSlug, setTasks } from '@/src/lib/features/board/boardSlice';
+
+export default function Board({ slug, tasks, list }) {
+  const board = useSelector((state) => state.board);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setList(list));
+    dispatch(setSlug(slug));
+    dispatch(setTasks(tasks));
+  }, [list, slug, tasks]);
+
+  // if (slug == 'upcoming') {
+  //     [tasksCounted, tasks] = await Promise.all([countTasks(accessToken, data), getTasks(accessToken, data)]);
+  //     taskList = {
+  //         id: 0,
+  //         name: 'Upcoming',
+  //     };
+  // } else {
+
+  // }
+
   return (
     <>
-      <ul className="flex flex-col items-start justify-center w-full">
-        {tasks
-          .filter(({ completed }) => completed === tableCompleted)
-          .map((task) => {
-            return (
-                <TaskElement tasksClient={tasks} key={task.id} task={task} />
-            );
-          })}
-          {
-            tasks.length == 0 && !tableCompleted && <p className="text-xs lg:text-sm text-gray-500 py-2">
-              {
-                slug == 'upcoming' ? "You don't have any upcoming task." : "You don't have any task."
-              }
-            </p>
-          }
-        {!tableCompleted && slug != 'upcoming' && <TaskAddButton list={list} slug={slug} />}
-      </ul>
+      <Tasks status="incompleted" />
+      <TasksDropdown>
+        <Tasks status="completed" />
+      </TasksDropdown>
     </>
   );
 }

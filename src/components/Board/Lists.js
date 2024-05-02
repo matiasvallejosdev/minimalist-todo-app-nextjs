@@ -17,18 +17,15 @@ export default async function Lists() {
           name={'Inbox'}
           list_uuid="inbox"
           icon={<IconInbox size={17} />}
-          deleteButton={false}
-          isSelected={true}
         />
-        <ListElement
+        {/* // TODO: Upcoming error 404 not found. */}
+        {/* <ListElement
           key={'2-upcoming'}
           id={'2-upcoming'}
           name={'Upcoming'}
           list_uuid="upcoming"
           icon={<IconCalendar size={17} />}
-          deleteButton={false}
-          isSelected={false}
-        />
+        /> */}
         <div className="relative">
           <div
             className="absolute top-0 left-0 w-full bg-gray-300 dark:bg-gray-500"
@@ -44,8 +41,6 @@ export default async function Lists() {
                 name={name}
                 list_uuid={list_uuid}
                 icon={<IconMenu2 size={17} />}
-                deleteButton={true}
-                isSelected={false}
               />
             );
           })}
