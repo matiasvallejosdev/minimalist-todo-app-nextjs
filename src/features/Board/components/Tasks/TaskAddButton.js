@@ -1,8 +1,8 @@
 'use client';
 import { IconPlus } from '@tabler/icons-react';
 
-import useBoardActions from '../hooks/useBoardActions';
-import useBoardState from '../hooks/useBoardState';
+import useBoardActions from '../../hooks/useBoardActions';
+import useBoardState from '../../hooks/useBoardState';
 
 import { createSimpleTask } from '@/src/services/Tasks';
 import { getAccessTokenClient } from '@/src/services/AuthClient';

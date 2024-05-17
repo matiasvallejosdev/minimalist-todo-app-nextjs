@@ -1,14 +1,14 @@
 'use client';
 import { IconMenu2 } from '@tabler/icons-react';
 
-import TaskCheckbox from '@/src/features/Board/components/TaskCheckbox';
-import TaskDelete from '@/src/features/Board/components/TaskDelete';
-import TaskUpcoming from '@/src/features/Board/components/TaskUpcoming';
-import TaskRowEdit from '@/src/features/Board/components/TaskRowEdit';
+import TaskCheckbox from '@/src/features/Board/components/Tasks/TaskCheckbox';
+import TaskDelete from '@/src/features/Board/components/Tasks/TaskDelete';
+import TaskUpcomingSchedule from '@/src/features/Board/components/Tasks/TaskUpcomingSchedule';
+import TaskRowEdit from '@/src/features/Board/components/Tasks/TaskRowEdit';
 
 import { useState } from 'react';
 
-export default function TaskElement({ task }) {
+export default function Task({ task }) {
   const [open, setOpen] = useState(false);
   const { task_uuid, completed } = task;
 
@@ -25,8 +25,8 @@ export default function TaskElement({ task }) {
             w-full
             dark:hover:bg-gray-800
         `}
-        onMouseEnter={(e) => setOpen(true)}
-        onMouseLeave={(e) => setOpen(false)}
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
       >
         {open && (
           <div 
@@ -41,9 +41,9 @@ export default function TaskElement({ task }) {
         <div className="flex items-center justify-end">
           <div className="flex justify-end items-center">
             {!task.completed && task.due_date != null ? (
-              <TaskUpcoming task={task} />
+              <TaskUpcomingSchedule task={task} />
             ) : (
-              open && <TaskUpcoming task={task} />
+              open && <TaskUpcomingSchedule task={task} />
             )}
             {open && <TaskDelete task={task} />}
           </div>

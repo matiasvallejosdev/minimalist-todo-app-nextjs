@@ -1,4 +1,4 @@
-import SignInButton from '../../../src/components/Lists/SignInButton';
+import SignInButton from '../../../src/features/Lists/SignInButton';
 import Link from 'next/link';
 
 export default function LoginPage({ searchParams }) {

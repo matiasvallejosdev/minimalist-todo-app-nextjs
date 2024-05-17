@@ -4,7 +4,7 @@ import { IconTrash } from '@tabler/icons-react';
 import { deleteTask } from '@/src/services/Tasks';
 import { getAccessTokenClient } from '@/src/services/AuthClient';
 
-import useBoardActions from '../hooks/useBoardActions';
+import useBoardActions from '../../hooks/useBoardActions';
 
 import { toast } from 'sonner';
 

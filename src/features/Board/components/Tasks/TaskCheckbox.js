@@ -3,8 +3,9 @@ import { IconCheck } from '@tabler/icons-react';
 
 import { updateTask } from '@/src/services/Tasks';
 import { getAccessTokenClient } from '@/src/services/AuthClient';
-import useBoardActions from '../hooks/useBoardActions';
+import useBoardActions from '../../hooks/useBoardActions';
 
+import { Checkbox } from "@/components/ui/checkbox"
 import { toast } from 'sonner';
 
 export default function TaskCheckbox({ task }) {
@@ -36,15 +37,7 @@ export default function TaskCheckbox({ task }) {
       {completed ? (
         <IconCheck size={20} className="text-blue-500" onClick={handleCheckbox} />
       ) : (
-        <input
-          className="focus:ring-blue-500 h-4 w-4 text-blue-500 border-gray-300 
-                rounded cursor-pointer
-                dark:bg-slate-700 dark:border-slate-400
-                "
-          type="checkbox"
-          checked={completed}
-          onChange={handleCheckbox}
-        />
+        <Checkbox checked={completed} onClick={handleCheckbox} />
       )}
     </>
   );

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import useBoardActions from '../hooks/useBoardActions';
+import useBoardActions from '../../hooks/useBoardActions';
 
 import { updateTask } from '@/src/services/Tasks';
 import { getAccessTokenClient } from '@/src/services/AuthClient';

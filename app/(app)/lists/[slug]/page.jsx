@@ -1,6 +1,6 @@
-import Board from '@/src/components/Board/Board';
-import ListActions from '@/src/components/Lists/ListActions';
-import ListTitle from '@/src/components/Lists/ListTitle';
+import Board from '@/src/features/Board/components/Board';
+import ListActions from '@/src/features/Lists/ListActions';
+import ListTitle from '@/src/features/Lists/ListTitle';
 
 import { getList } from '@/src/services/Lists';
 import { getTasks } from '@/src/services/Tasks';

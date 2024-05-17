@@ -1,11 +1,6 @@
 'use client';
-// import { countTasks } from '@/src/services/Tasks';
-// import { getList } from '@/src/services/Lists';
-// import { getAccessTokenServer } from '@/src/services/AuthServer';
-// import { getTasks } from '@/src/services/Tasks';
-
-import Tasks from './Tasks';
-import TasksDropdown from '../../features/Board/components/TasksDropdown';
+import TasksList from './Tasks/TasksList';
+import TasksDropdown from './Tasks/TasksDropdown';
 
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -35,9 +30,9 @@ export default function Board({ slug, tasks, list }) {
 
   return (
     <>
-      <Tasks status="incompleted" />
+      <TasksList status="incompleted" />
       <TasksDropdown>
-        <Tasks status="completed" />
+        <TasksList status="completed" />
       </TasksDropdown>
     </>
   );

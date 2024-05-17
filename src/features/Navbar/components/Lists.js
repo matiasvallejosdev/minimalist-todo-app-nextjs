@@ -1,4 +1,4 @@
-import ListElement from '@/src/components/Lists/ListElement';
+import ListElement from '@/src/features/Lists/ListElement';
 import { getLists } from '@/src/services/Lists';
 import { IconMenu2, IconCalendar, IconInbox } from '@tabler/icons-react';
 import { getAccessTokenServer } from '@/src/services/AuthServer';

@@ -1,10 +1,10 @@
 'use client';
-import TaskElement from '@/src/features/Board/components/TaskElement';
-import TaskAddButton from '@/src/features/Board/components/TaskAddButton';
+import TaskElement from '@/src/features/Board/components/Tasks/Task';
+import TaskAddButton from '@/src/features/Board/components/Tasks/TaskAddButton';
 
 import { useSelector } from 'react-redux';
 
-export default function Tasks({ status = 'all' }) {
+export default function TasksList({ status = 'all' }) {
   const board = useSelector((state) => state.board);
   const tasks =
     status === 'all'
