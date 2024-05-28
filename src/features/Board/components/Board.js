@@ -3,30 +3,17 @@ import TasksList from './Tasks/TasksList';
 import TasksDropdown from './Tasks/TasksDropdown';
 
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
 
-import { setList, setSlug, setTasks } from '@/src/lib/features/board/boardSlice';
+import useBoardActions from '../hooks/useBoardActions';
 
 export default function Board({ slug, tasks, list }) {
-  const board = useSelector((state) => state.board);
-  const dispatch = useDispatch();
+  const { setListAction, setSlugAction, setTasksAction } = useBoardActions();
 
   useEffect(() => {
-    dispatch(setList(list));
-    dispatch(setSlug(slug));
-    dispatch(setTasks(tasks));
+    setListAction(list);
+    setSlugAction(slug);
+    setTasksAction(tasks);
   }, [list, slug, tasks]);
-
-  // if (slug == 'upcoming') {
-  //     [tasksCounted, tasks] = await Promise.all([countTasks(accessToken, data), getTasks(accessToken, data)]);
-  //     taskList = {
-  //         id: 0,
-  //         name: 'Upcoming',
-  //     };
-  // } else {
-
-  // }
 
   return (
     <>

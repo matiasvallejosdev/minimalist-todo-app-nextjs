@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import useBoardActions from '../../hooks/useBoardActions';
 
-import { updateTask } from '@/src/services/Tasks';
-import { getAccessTokenClient } from '@/src/services/AuthClient';
+import { updateTask } from '@/src/services/api/TasksApi';
+import { getAccessTokenClient } from '@/src/services/auth/AuthClient';
 
 import { toast } from 'sonner';
 

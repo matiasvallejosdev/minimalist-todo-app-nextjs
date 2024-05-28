@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import MadeWith from '@/src/components/Me/MadeWith'
+import MadeWith from '@/src/components/MadeWith'
 
 export default function Header() {
   return (

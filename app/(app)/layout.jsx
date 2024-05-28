@@ -14,7 +14,7 @@ export default function TasksLayout({ children }) {
             <HeaderResponsiveNavbar />
           </div>
           <div className="flex h-screen">
-            <div className="bg-gray-100 dark:bg-slate-800">
+            <div className="bg-gray-100 dark:bg-gray-900">
               <Sidebar />
             </div>
             <div className="w-full flex-1 px-6 py-3 lg:px-12 lg:py-6">

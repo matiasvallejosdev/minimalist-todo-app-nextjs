@@ -1,14 +1,14 @@
 'use client';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Button } from '@/src/components/ui/button';
+import { Input } from '@/src/components/ui/input';
+import { Label } from '@/src/components/ui/label';
+import { Popover, PopoverContent, PopoverTrigger } from '@/src/components/ui/popover';
 
 import { IconCalendarEvent } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
-import { getAccessTokenClient } from '@/src/services/AuthClient';
+import { getAccessTokenClient } from '@/src/services/auth/AuthClient';
 import { useState } from 'react';
-import { updateTask } from '@/src/services/Tasks';
+import { updateTask } from '@/src/services/api/TasksApi';
 
 // export default function TaskUpcoming({ task }) {
 //   const { task_uuid } = task;
@@ -104,7 +104,8 @@ import { updateTask } from '@/src/services/Tasks';
 //   );
 // }
 
-export default function TaskUpcomingSchedule() {
+export default function 
+() {
   return (
     <Popover>
       <PopoverTrigger asChild>

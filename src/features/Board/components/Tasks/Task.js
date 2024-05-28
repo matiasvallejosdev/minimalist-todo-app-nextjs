@@ -40,11 +40,11 @@ export default function Task({ task }) {
         </div>
         <div className="flex items-center justify-end">
           <div className="flex justify-end items-center">
-            {!task.completed && task.due_date != null ? (
+            {/* {!task.completed && task.due_date != null ? (
               <TaskUpcomingSchedule task={task} />
             ) : (
               open && <TaskUpcomingSchedule task={task} />
-            )}
+            )} */}
             {open && <TaskDelete task={task} />}
           </div>
         </div>

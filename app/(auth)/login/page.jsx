@@ -1,7 +1,8 @@
-import SignInButton from '../../../src/features/Lists/SignInButton';
+import GithubSignInButton from '@/src/components/auth/social/GithubSignInButton';
+import GoogleSignInButton from '@/src/components/auth/social/GoogleSignInButton';
 import Link from 'next/link';
 
-export default function LoginPage({ searchParams }) {
+export default function LoginPage() {
   return (
     <div className="h-full dark:text-white flex items-center justify-center">
       <div
@@ -24,7 +25,10 @@ export default function LoginPage({ searchParams }) {
             A community of over hundred of members, where you can improve your productivity managing the tasks.
           </p>
         </div>
-        <SignInButton />
+        <div className="flex flex-col justify-center items-center gap-4">
+          <GoogleSignInButton />
+          <GithubSignInButton />
+        </div>
       </div>
     </div>
   );

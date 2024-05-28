@@ -52,7 +52,10 @@ export const boardSlice = createSlice({
         return task;
       });
     },
+    updateListName: (state, action) => {
+      state.list.name = action.payload.name;
+    },
   },
 });
 
-export const { setList, setSlug, setTasks, updateStatusTask, addTask, removeTask, updateTask } = boardSlice.actions;
+export const { setList, setSlug, setTasks, updateStatusTask, addTask, removeTask, updateTask, updateListName } = boardSlice.actions;

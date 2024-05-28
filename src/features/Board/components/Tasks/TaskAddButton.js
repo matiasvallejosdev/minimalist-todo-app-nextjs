@@ -4,11 +4,12 @@ import { IconPlus } from '@tabler/icons-react';
 import useBoardActions from '../../hooks/useBoardActions';
 import useBoardState from '../../hooks/useBoardState';
 
-import { createSimpleTask } from '@/src/services/Tasks';
-import { getAccessTokenClient } from '@/src/services/AuthClient';
-import { generateUuid } from '@/src/utils/Utils';
+import { createSimpleTask } from '@/src/services/api/TasksApi';
+import { getAccessTokenClient } from '@/src/services/auth/AuthClient';
+import { generateUuid } from '@/utils/appUtils';
+import { getCompletion } from '@/src/services/api/AIApi';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import useOutsideClick from '@/src/hooks/useOutsideClick';
 
 import { toast } from 'sonner';
@@ -17,20 +18,33 @@ export default function TaskAddButton({ list }) {
   const { board } = useBoardState();
   const { addTaskAction, updateTaskAction, setTasksAction } = useBoardActions();
 
-  const [title, setTitle] = useState(''); 
-
+  const [title, setTitle] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isReadyToClose, setIsReadyToClose] = useState(false);
-  
-  const backgroundRef = useRef(null);
+  const [suggestion, setSuggestion] = useState('');
 
-  useOutsideClick(backgroundRef, () => {
-    setIsOpen(false);
-    setIsReadyToClose(false);
-    handleCreate();
-  }, isReadyToClose);
+  const backgroundRef = useRef(null);
+  const inputRef = useRef(null);
+  const spanRef = useRef(null);
+
+  useOutsideClick(
+    backgroundRef,
+    () => {
+      setIsOpen(false);
+      setIsReadyToClose(false);
+      handleCreate();
+    },
+    isReadyToClose,
+  );
+
+  useEffect(() => {
+    if (spanRef.current && inputRef.current) {
+      inputRef.current.style.width = `${spanRef.current.offsetWidth}px`;
+    }
+  }, [title]);
 
   const handleCreate = async (e) => {
+    setSuggestion('');
     if (title === '') return;
 
     const tasksBackup = board.tasks;
@@ -41,7 +55,7 @@ export default function TaskAddButton({ list }) {
       task_list: list.list_uuid,
     };
 
-    addTaskAction({...data, task_uuid: taskUuid});
+    addTaskAction({ ...data, task_uuid: taskUuid });
     setTitle('');
 
     const accessToken = await getAccessTokenClient();
@@ -63,15 +77,40 @@ export default function TaskAddButton({ list }) {
     }
   };
 
+  const handleKeyDown = async (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleCreate(e);
+    }
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      setIsOpen(false);
+      setIsReadyToClose(false);
+    }
+    if (e.key === 'Tab' && suggestion) {
+      e.preventDefault();
+      setTitle(suggestion);
+      setSuggestion('');
+    }
+    if (e.key === ' ') {
+      const accessToken = await getAccessTokenClient();
+      const result = await getCompletion(accessToken, title);
+      setSuggestion(result.text);
+    }
+    if (e.key === 'Backspace' && suggestion) {
+      setSuggestion('');
+    }
+  };
+
   return (
     <>
       <li
         className={`
-            cursor-pointer
-            flex gap-4 items-center justify-between
-            w-full
-            mt-0.5
-            `}
+          cursor-pointer
+          flex gap-4 items-center justify-between
+          w-full
+          mt-0.5
+        `}
       >
         {isOpen ? (
           <form
@@ -79,54 +118,50 @@ export default function TaskAddButton({ list }) {
             id="create-task"
             name="create-task"
             className="
-                        cursor-pointer
-                        flex gap-3 items-center justify-between
-                        hover:bg-gray-100 p-1 rounded-md
-                        w-full
-                        dark:hover:bg-gray-800
-                        h-full
-                        pl-1
-                        pt-1
-                    "
+              cursor-pointer
+              flex gap-3 items-center justify-between
+              hover:bg-gray-100 p-1 rounded-md
+              w-full
+              dark:hover:bg-gray-800
+              h-full
+              pl-1
+              pt-1
+            "
             onBlur={(e) => {
               e.preventDefault();
               handleCreate(e);
             }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                e.preventDefault();
-                handleCreate(e);
-              }
-              if (e.key == 'Escape') {
-                e.preventDefault();
-                setIsOpen(false);
-                setIsReadyToClose(false);
-              }
-            }}
+            onKeyDown={handleKeyDown}
           >
             <input
               className="focus:ring-blue-500 h-4 w-4 text-blue-500 border-gray-300 rounded cursor-pointer"
               type="checkbox"
             />
-            <input
-              name="title"
-              type="text"
-              className="h-full rounded-md bg-inherit w-full border-none
-                                focus:outline-none focus:border-none focus:ring-0 text-black
-                                placeholder-gray-500 dark:placeholder-gray-400 dark:text-gray-100
-                                p-0 text-sm
-                                "
-              placeholder="Task Title"
-              onChange={(e) => setTitle(e.target.value)}
-              autoFocus
-            />
+            <div className="relative w-full flex items-center text-sm">
+              <span ref={spanRef} className="absolute invisible whitespace-pre-wrap" aria-hidden="true">
+                {title}
+              </span>
+              <input
+                ref={inputRef}
+                name="title"
+                type="text"
+                className="bg-inherit border-none w-auto
+                  focus:outline-none focus:border-none focus:ring-0 
+                "
+                placeholder="Task Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                autoFocus
+              />
+              {suggestion && <span className="text-gray-500 opacity-50 ml-1">{suggestion.slice(title.length)}</span>}
+            </div>
           </form>
         ) : (
           <button
             className="pt-1 w-full text-left flex gap-2 items-center justify-start 
-                        text-gray-700 hover:text-black dark:hover:text-white dark:text-gray-300
-                        text-sm
-                        "
+              text-gray-700 hover:text-black dark:hover:text-white dark:text-gray-300
+              text-sm
+            "
             onClick={handleOpen}
           >
             <IconPlus size={20} />

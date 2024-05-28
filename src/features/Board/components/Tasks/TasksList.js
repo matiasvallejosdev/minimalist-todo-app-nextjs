@@ -2,10 +2,10 @@
 import TaskElement from '@/src/features/Board/components/Tasks/Task';
 import TaskAddButton from '@/src/features/Board/components/Tasks/TaskAddButton';
 
-import { useSelector } from 'react-redux';
+import useBoardState from '../../hooks/useBoardState';
 
 export default function TasksList({ status = 'all' }) {
-  const board = useSelector((state) => state.board);
+  const { board } = useBoardState();
   const tasks =
     status === 'all'
       ? board.tasks
@@ -28,7 +28,7 @@ export default function TasksList({ status = 'all' }) {
         {tasks.map((task) => {
           return <TaskElement tasksClient={tasks} key={task.task_uuid} task={task} />;
         })}
-        {status == 'incompleted' && slug != 'upcoming' && <TaskAddButton key={"new-task"} list={list} slug={slug} />}
+        {status == 'incompleted' && slug != 'upcoming' && <TaskAddButton key={'new-task'} list={list} slug={slug} />}
       </ul>
     </>
   );

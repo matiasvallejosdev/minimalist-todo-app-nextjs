@@ -1,8 +1,8 @@
 'use client';
 import { IconTrash } from '@tabler/icons-react';
 
-import { deleteTask } from '@/src/services/Tasks';
-import { getAccessTokenClient } from '@/src/services/AuthClient';
+import { deleteTask } from '@/src/services/api/TasksApi';
+import { getAccessTokenClient } from '@/src/services/auth/AuthClient';
 
 import useBoardActions from '../../hooks/useBoardActions';
 

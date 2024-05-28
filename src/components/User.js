@@ -3,8 +3,8 @@ import useUser from '@/src/hooks/useUser';
 import Image from 'next/image';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { useState } from 'react';
-import SignOutButton from './SignOutButton';
-import { limitCharacters } from '@/src/utils/Utils';
+import SignOutButton from './auth/SignOutButton';
+import { limitCharacters } from '@/utils/appUtils';
 
 export default function User() {
   const { user } = useUser();

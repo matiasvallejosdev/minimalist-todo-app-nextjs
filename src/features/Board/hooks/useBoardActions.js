@@ -7,7 +7,8 @@ import {
   setList,
   setTasks,
   setSlug,
-} from '@/src/lib/features/board/boardSlice';
+  updateListName,
+} from '@/src/lib/features/boardSlice';
 
 export default function useBoardActions() {
   const dispatch = useDispatch();
@@ -26,6 +27,10 @@ export default function useBoardActions() {
 
   const updateTaskAction = ({ task_uuid, task }) => {
     dispatch(updateTask({ task_uuid, task }));
+  };
+
+  const updateBoardListNameAction = ({ name }) => {
+    dispatch(updateListName(name));
   };
 
   const setListAction = (list) => {
@@ -48,5 +53,6 @@ export default function useBoardActions() {
     setListAction,
     setTasksAction,
     setSlugAction,
+    updateBoardListNameAction,
   };
 }

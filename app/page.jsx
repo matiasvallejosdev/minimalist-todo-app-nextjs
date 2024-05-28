@@ -2,7 +2,9 @@ import Header from '@/src/layouts/Header';
 import Footer from '@/src/layouts/Footer';
 import Image from 'next/image';
 import { multiSection } from '@/src/data/HomeData';
-import LoginButton from '@/src/features/Lists/SignInButton';
+
+import GoogleSignInButton from '@/src/components/auth/social/GoogleSignInButton';
+import GithubSignInButton from '@/src/components/auth/social/GithubSignInButton';
 
 export default async function Home() {
   return (
@@ -12,7 +14,10 @@ export default async function Home() {
         <section className="flex flex-col items-center justify-center gap-8 pt-12 pb-24 md:py-14">
           <h1 className="font-bold text-6xl md:text-7xl">Simple, shareable todo lists</h1>
           <p className="text-lg md:text-2xl">The easiest way to keep track of the stuff you want to do.</p>
-          <LoginButton />
+          <div className="flex gap-4">
+            <GoogleSignInButton />
+            <GithubSignInButton />
+          </div>
           <Image
             src="/minimalist.gif"
             alt="Minimalist To Do"

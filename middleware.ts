@@ -1,7 +1,7 @@
 import {NextResponse, NextRequest} from "next/server";
 import {withAuth} from "next-auth/middleware";
 import {decode} from "next-auth/jwt";
-import {isUserAuthenticated} from "@/src/services/AuthServer";
+import {isUserAuthenticated} from "@/src/services/auth/AuthServer";
 
 
 export default withAuth(

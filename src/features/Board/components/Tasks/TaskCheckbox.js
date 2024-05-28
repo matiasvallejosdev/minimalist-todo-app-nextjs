@@ -1,11 +1,11 @@
 'use client';
 import { IconCheck } from '@tabler/icons-react';
 
-import { updateTask } from '@/src/services/Tasks';
-import { getAccessTokenClient } from '@/src/services/AuthClient';
+import { updateTask } from '@/src/services/api/TasksApi';
+import { getAccessTokenClient } from '@/src/services/auth/AuthClient';
 import useBoardActions from '../../hooks/useBoardActions';
 
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/src/components/ui/checkbox"
 import { toast } from 'sonner';
 
 export default function TaskCheckbox({ task }) {

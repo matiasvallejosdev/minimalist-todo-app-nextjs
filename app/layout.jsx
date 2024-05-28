@@ -19,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${customFont.className} antialiased relative bg-white dark:bg-slate-900`}>
+      <body className={`${customFont.className} antialiased relative`}>
         <Providers>{children}</Providers>
       </body>
     </html>
