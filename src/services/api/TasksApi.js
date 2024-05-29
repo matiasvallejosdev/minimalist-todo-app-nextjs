@@ -7,6 +7,7 @@ export const getTasks = async (accessToken, { slug }) => {
     const response = await fetch(url, {
       method: 'GET',
       headers: getHeaders(accessToken),
+      cache: 'no-store',
     });
     return handleResponse(response);
   } catch (error) {

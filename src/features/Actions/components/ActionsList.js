@@ -89,8 +89,6 @@ export default function ActionsList() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={handleArchiveList}>
             <span className="flex items-center justify-start gap-2">

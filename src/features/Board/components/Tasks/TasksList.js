@@ -18,13 +18,6 @@ export default function TasksList({ status = 'all' }) {
   return (
     <>
       <ul className="flex flex-col items-start justify-center w-full">
-        {tasks.length == 0 && status == 'all' && (
-          <li>
-            <p className="text-xs lg:text-sm text-gray-500 py-2">
-              {slug == 'upcoming' ? "You don't have any upcoming task." : "You don't have any task."}
-            </p>
-          </li>
-        )}
         {tasks.map((task) => {
           return <TaskElement tasksClient={tasks} key={task.task_uuid} task={task} />;
         })}

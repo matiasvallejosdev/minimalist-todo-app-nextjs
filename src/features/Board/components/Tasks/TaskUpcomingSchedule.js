@@ -1,15 +1,3 @@
-'use client';
-import { Button } from '@/src/components/ui/button';
-import { Input } from '@/src/components/ui/input';
-import { Label } from '@/src/components/ui/label';
-import { Popover, PopoverContent, PopoverTrigger } from '@/src/components/ui/popover';
-
-import { IconCalendarEvent } from '@tabler/icons-react';
-import { useRouter } from 'next/navigation';
-import { getAccessTokenClient } from '@/src/services/auth/AuthClient';
-import { useState } from 'react';
-import { updateTask } from '@/src/services/api/TasksApi';
-
 // export default function TaskUpcoming({ task }) {
 //   const { task_uuid } = task;
 //   const [isOpen, setIsOpen] = useState(false);
@@ -17,20 +5,6 @@ import { updateTask } from '@/src/services/api/TasksApi';
 //     task.date == null ? new Date().toISOString().split('T')[0] : new Date(task.due_date).toISOString().split('T')[0];
 //   const [date, setDate] = useState(defaultValue);
 //   const router = useRouter();
-
-//   const handleSumbit = async (e) => {
-//     const accessToken = await getAccessTokenClient();
-//     console.log(accessToken);
-//     updateTask(accessToken, task_uuid, {
-//       due_date: date,
-//     })
-//       .then(() => {
-//         router.refresh();
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   };
 
 //   const handleDateChange = (e) => {
 //     setDate(e.target.value);
@@ -58,7 +32,6 @@ import { updateTask } from '@/src/services/api/TasksApi';
 //               setIsOpen(!isOpen);
 //             }}
 //           >
-//             <IconCalendarEvent size={20} />
 //           </button>
 //         </>
 //       )}
@@ -103,40 +76,114 @@ import { updateTask } from '@/src/services/api/TasksApi';
 //     </>
 //   );
 // }
+'use client';
+import { getRelativeDate } from '@/src/utils/dateUtils';
+import { IconCalendarEvent, IconClockHour10, IconSunrise, IconPlayerTrackNext, IconForbid } from '@tabler/icons-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/src/components/ui/dropdown-menu';
+import { useState } from 'react';
+import useBoardActions from '../../hooks/useBoardActions';
+import { getAccessTokenClient } from '@/src/services/auth/AuthClient';
+import { updateTask } from '@/src/services/api/TasksApi';
+import { toast } from 'sonner';
+import { getRelativeDayString } from '@/src/utils/dateUtils';
+import { useRouter } from 'next/navigation';
 
-export default function 
-() {
+export default function TaskUpcomingSchedule({ handleUpcoming, task }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const { task_uuid } = task;
+  const { updateTaskAction } = useBoardActions();
+  const router = useRouter();
+
+  const handleSumbit = async (option) => {
+    setIsOpen(false);
+    const accessToken = await getAccessTokenClient();
+    const taskBackup = task;
+    let date;
+    if (option === 'no_due_date') {
+      date = null;
+    } else {
+      date = getRelativeDate(option).toISOString();
+    }
+    const data = {
+      due_date: date,
+    };
+    const taskUpdated = {
+      ...task,
+      ...data,
+    };
+    console.log(data);
+
+    updateTaskAction({ task_uuid: task_uuid, task: taskUpdated });
+    updateTask(accessToken, task_uuid, data)
+      .then((task) => {
+        updateTaskAction({ task_uuid: task_uuid, task: task });
+        toast.success('Task updated successfully');
+        setIsOpen(false);
+        router.refresh();
+        handleUpcoming(!isOpen);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('An error occurred while updating the task');
+        updateTaskAction({ task_uuid: taskBackup.task_uuid, task: taskBackup });
+        setIsOpen(false);
+        handleUpcoming(!isOpen);
+      });
+  };
+
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="outline">Open popover</Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-80">
-        <div className="grid gap-4">
-          <div className="space-y-2">
-            <h4 className="font-medium leading-none">Dimensions</h4>
-            <p className="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
-          </div>
-          <div className="grid gap-2">
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="width">Width</Label>
-              <Input id="width" defaultValue="100%" className="col-span-2 h-8" />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxWidth">Max. width</Label>
-              <Input id="maxWidth" defaultValue="300px" className="col-span-2 h-8" />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="height">Height</Label>
-              <Input id="height" defaultValue="25px" className="col-span-2 h-8" />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxHeight">Max. height</Label>
-              <Input id="maxHeight" defaultValue="none" className="col-span-2 h-8" />
-            </div>
-          </div>
-        </div>
-      </PopoverContent>
-    </Popover>
+    <DropdownMenu
+      isOpen={isOpen}
+      onOpenChange={() => {
+        setIsOpen(!isOpen);
+        handleUpcoming(!isOpen);
+      }}
+    >
+      <DropdownMenuTrigger asChild>
+        <button className={`hover:text-gray-600 text-gray-300 dark:hover:text-white dark:text-gray-400
+          ${isOpen ? 'text-gray-600 dark:text-white' : ''}
+        `}>
+          {task.due_date ? (
+            <div className="text-sm text-gray-500">{getRelativeDayString(task.due_date)}</div>
+          ) : (
+            <IconCalendarEvent size={20} />
+          )}
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuGroup>
+          <DropdownMenuItem onClick={() => handleSumbit('today')}>
+            <span className="flex items-center justify-start gap-2">
+              <IconClockHour10 size={18} />
+              Today
+            </span>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => handleSumbit('tomorrow')}>
+            <span className="flex items-center justify-start gap-2">
+              <IconSunrise size={18} />
+              Tomorrow
+            </span>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => handleSumbit('next_week')}>
+            <span className="flex items-center justify-start gap-2">
+              <IconPlayerTrackNext size={18} />
+              Next Week
+            </span>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => handleSumbit('no_due_date')}>
+            <span className="flex items-center justify-start gap-2">
+              <IconForbid size={18} />
+              No Due Date
+            </span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

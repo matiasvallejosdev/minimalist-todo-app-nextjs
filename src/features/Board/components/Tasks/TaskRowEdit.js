@@ -21,15 +21,16 @@ export default function TaskRowEdit({ task }) {
     setIsOpen(false);
     const accessToken = await getAccessTokenClient();
     const taskBackup = task;
+    const data = {
+      title: taskTitle,
+    };
     const taskUpdated = {
       ...task,
-      title: taskTitle,
+      ...data
     };
 
     updateTaskAction({ task_uuid: task_uuid, task: taskUpdated });
-    updateTask(accessToken, task_uuid, {
-      title: taskTitle,
-    })
+    updateTask(accessToken, task_uuid, data)
       .then((task) => {
         updateTaskAction({ task_uuid: task_uuid, task: task });
         toast.success('Task updated successfully');

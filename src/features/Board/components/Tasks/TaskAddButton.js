@@ -12,6 +12,8 @@ import { getCompletion } from '@/src/services/api/AIApi';
 import { useState, useRef, useEffect } from 'react';
 import useOutsideClick from '@/src/hooks/useOutsideClick';
 
+import { Checkbox } from '@/src/components/ui/checkbox';
+
 import { toast } from 'sonner';
 
 export default function TaskAddButton({ list }) {
@@ -110,6 +112,10 @@ export default function TaskAddButton({ list }) {
           flex gap-4 items-center justify-between
           w-full
           mt-0.5
+          px-4
+          hover:bg-gray-100 dark:hover:bg-gray-800
+          rounded-md
+          p-1
         `}
       >
         {isOpen ? (
@@ -120,12 +126,8 @@ export default function TaskAddButton({ list }) {
             className="
               cursor-pointer
               flex gap-3 items-center justify-between
-              hover:bg-gray-100 p-1 rounded-md
               w-full
-              dark:hover:bg-gray-800
               h-full
-              pl-1
-              pt-1
             "
             onBlur={(e) => {
               e.preventDefault();
@@ -133,10 +135,7 @@ export default function TaskAddButton({ list }) {
             }}
             onKeyDown={handleKeyDown}
           >
-            <input
-              className="focus:ring-blue-500 h-4 w-4 text-blue-500 border-gray-300 rounded cursor-pointer"
-              type="checkbox"
-            />
+            <Checkbox checked={false} disabled/>
             <div className="relative w-full flex items-center text-sm">
               <span ref={spanRef} className="absolute invisible whitespace-pre-wrap" aria-hidden="true">
                 {title}
@@ -158,9 +157,9 @@ export default function TaskAddButton({ list }) {
           </form>
         ) : (
           <button
-            className="pt-1 w-full text-left flex gap-2 items-center justify-start 
+            className="w-full text-left flex gap-2 items-center justify-start 
               text-gray-700 hover:text-black dark:hover:text-white dark:text-gray-300
-              text-sm
+              text-sm p-0
             "
             onClick={handleOpen}
           >
