@@ -1,5 +1,5 @@
+import ActionsList from '@/src/features/Actions/components/ActionsList';
 import Board from '@/src/features/Board/components/Board';
-import ListActions from '@/src/features/Lists/ListActions';
 import ListTitle from '@/src/features/Lists/ListTitle';
 
 import { getList } from '@/src/services/api/ListsApi';
@@ -16,7 +16,7 @@ export default async function ListPage({ params }) {
     <>
       <div className="py-2 flex justify-between items-center">
         <ListTitle />
-        {(slug != 'inbox') & (slug != 'upcoming') ? <ListActions list={taskList} /> : <></>}
+        {(slug != 'inbox') & (slug != 'upcoming') ? <ActionsList list={taskList} /> : <></>}
       </div>
       <div className="flex flex-col gap-10">
         <Board slug={slug} tasks={tasks} list={taskList} />

@@ -27,7 +27,7 @@ export default function ListElement({ id, name, list_uuid, icon }) {
                     dark:hover:bg-gray-700 hover:bg-gray-200 font-normal
                     ${
                       isSelected
-                        ? 'lg:bg-white dark:bg-slate-900 text-primary-700 dark:text-primary-500'
+                        ? 'lg:bg-white dark:bg-black text-primary-700 dark:text-primary-500'
                         : ' dark:text-white'
                     }
                   `}

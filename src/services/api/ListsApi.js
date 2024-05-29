@@ -46,14 +46,14 @@ export const deleteList = async (accessToken, pk) => {
   }
 };
 
-export const updateList = async (accessToken, pk, { name }) => {
+export const updateList = async (accessToken, pk, data) => {
   const url = `${BASE_URL}/lists/${pk}/`;
 
   try {
     const response = await fetch(url, {
       method: 'PATCH',
       headers: getHeaders(accessToken),
-      body: JSON.stringify({ name }),
+      body: JSON.stringify(data),
     });
     return handleResponse(response);
   } catch (error) {

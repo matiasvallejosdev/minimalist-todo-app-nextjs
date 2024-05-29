@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import ListElement from '@/src/features/Lists/ListElement';
 import { IconCalendar, IconInbox } from '@tabler/icons-react';
@@ -8,14 +8,14 @@ import Lists from '@/src/features/Lists/Lists';
 import useListActions from '../features/Lists/hooks/useListActions';
 import { useEffect } from 'react';
 import Separator from '../components/Separator';
+import { ListAddButton } from '../features/Lists/ListAddButton';
 
-export default function Navbar({lists}) {
+export default function Navbar({ lists }) {
   const { setListsAction } = useListActions();
-  
+
   useEffect(() => {
     setListsAction(lists);
   }, [lists, setListsAction]);
-
 
   return (
     <>
@@ -28,8 +28,9 @@ export default function Navbar({lists}) {
           list_uuid="upcoming"
           icon={<IconCalendar size={17} />}
         />
-        <Separator />
         <Lists />
+        <Separator />
+        <ListAddButton />
       </ul>
     </>
   );

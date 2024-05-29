@@ -1,6 +1,6 @@
 import { BASE_URL, getHeaders, logError, handleResponse } from '@/utils/apiUtils';
 
-export const getCompletion = async (accessToken, text) => {
+export const getCompletion = async (accessToken, { text, title }) => {
   const url = new URL(`${BASE_URL}/ai/autocomplete`);
   url.searchParams.append('input_text', text); // Add the parameter to the URL
 
