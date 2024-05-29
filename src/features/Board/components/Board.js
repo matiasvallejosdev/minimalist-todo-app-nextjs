@@ -4,9 +4,11 @@ import TasksDropdown from './Tasks/TasksDropdown';
 
 import { useEffect } from 'react';
 
+import useBoardState from '../hooks/useBoardState';
 import useBoardActions from '../hooks/useBoardActions';
 
 export default function Board({ slug, tasks, list }) {
+  const { board } = useBoardState();
   const { setListAction, setSlugAction, setTasksAction } = useBoardActions();
 
   useEffect(() => {
@@ -18,9 +20,11 @@ export default function Board({ slug, tasks, list }) {
   return (
     <>
       <TasksList status="incompleted" />
-      <TasksDropdown>
-        <TasksList status="completed" />
-      </TasksDropdown>
+      {board.count.completed > 0 && (
+        <TasksDropdown>
+          <TasksList status="completed" />
+        </TasksDropdown>
+      )}
     </>
   );
 }
