@@ -91,15 +91,17 @@ export default function TaskAddButton({ list }) {
     }
     if (e.key === 'Tab' && suggestion) {
       e.preventDefault();
-      setTitle(suggestion);
-      setSuggestion('');
+      // setTitle(suggestion);
+      // setSuggestion('');
     }
     if (e.key === ' ') {
-      const accessToken = await getAccessTokenClient();
-      const result = await getCompletion(accessToken, title);
-      setSuggestion(result.text);
+      e.preventDefault();
+      // const accessToken = await getAccessTokenClient();
+      // const result = await getCompletion(accessToken, title);
+      // setSuggestion(result.text);
     }
     if (e.key === 'Backspace' && suggestion) {
+      e.preventDefault();
       setSuggestion('');
     }
   };
@@ -147,10 +149,10 @@ export default function TaskAddButton({ list }) {
                 className="bg-inherit border-none w-auto
                   focus:outline-none focus:border-none focus:ring-0 
                 "
-                placeholder="Task Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 autoFocus
+                placeholder="Task Title"
               />
               {suggestion && <span className="text-gray-500 opacity-50 ml-1">{suggestion.slice(title.length)}</span>}
             </div>
