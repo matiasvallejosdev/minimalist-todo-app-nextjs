@@ -4,8 +4,6 @@ import { isJwtExpired } from '@/src/utils/jwtUtils';
 
 export async function handleGoogleLogin(account) {
   const { access_token: accessToken, id_token: idToken } = account;
-  console.log('accessToken:', accessToken);
-  console.log('idToken:', idToken);
 
   try {
     const response = await fetch(ENDPOINTS.googleLogin, {

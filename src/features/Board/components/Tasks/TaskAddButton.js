@@ -83,24 +83,15 @@ export default function TaskAddButton({ list }) {
     if (e.key === 'Enter') {
       e.preventDefault();
       handleCreate(e);
-    }
-    if (e.key === 'Escape') {
+    } else if (e.key === 'Escape') {
       e.preventDefault();
       setIsOpen(false);
       setIsReadyToClose(false);
-    }
-    if (e.key === 'Tab' && suggestion) {
+    } else if (e.key === 'Tab' && suggestion) {
       e.preventDefault();
       // setTitle(suggestion);
-      // setSuggestion('');
-    }
-    if (e.key === ' ') {
-      e.preventDefault();
-      // const accessToken = await getAccessTokenClient();
-      // const result = await getCompletion(accessToken, title);
-      // setSuggestion(result.text);
-    }
-    if (e.key === 'Backspace' && suggestion) {
+      setSuggestion('');
+    } else if (e.key === 'Backspace' && suggestion) {
       e.preventDefault();
       setSuggestion('');
     }
@@ -137,7 +128,7 @@ export default function TaskAddButton({ list }) {
             }}
             onKeyDown={handleKeyDown}
           >
-            <Checkbox checked={false} disabled/>
+            <Checkbox checked={false} disabled />
             <div className="relative w-full flex items-center text-sm">
               <span ref={spanRef} className="absolute invisible whitespace-pre-wrap" aria-hidden="true">
                 {title}
@@ -152,7 +143,7 @@ export default function TaskAddButton({ list }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 autoFocus
-                placeholder="Task Title"
+                placeholder={title === '' ? 'Task Title' : ''} // Conditional placeholder
               />
               {suggestion && <span className="text-gray-500 opacity-50 ml-1">{suggestion.slice(title.length)}</span>}
             </div>

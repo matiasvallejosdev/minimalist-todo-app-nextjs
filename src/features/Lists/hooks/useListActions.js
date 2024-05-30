@@ -21,7 +21,6 @@ export default function useListActions() {
   };
 
   const updateListNameAction = ({ list_uuid, name }) => {
-    console.log(list_uuid, name);
     dispatch(updateListName({ list_uuid, name }));
   };
 
